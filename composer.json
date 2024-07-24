@@ -1,0 +1,20 @@
+{
+    "name": "mh-shuvo/quick-php",
+    "description": "A streamlined PHP skeleton project that allows rapid development and deployment of applications, inspired by the efficiency and ease of use.",
+    "autoload": {
+        "psr-4": {
+            "MhShuvo\\QuickPhp\\": "src/",
+            "MhShuvo\\QuickPhp\\Core\\": "src/core",
+            "MhShuvo\\QuickPhp\\App\\": "src/app"
+        }
+    },
+    "authors": [
+        {
+            "name": "Md. Mehedi Hasan",
+            "email": "mehedifci907@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/console": "^6.4"
+    }
+}

@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+use Symfony\Component\Console\Application;
+use MhShuvo\QuickPhp\Core\Foundation\Console\Commands\MaintenanceDownCommand;
+use MhShuvo\QuickPhp\Core\Foundation\Console\Commands\MaintenanceUpCommand;
+
+
+$application = new Application();
+
+$application->add(new MaintenanceDownCommand("down"));
+$application->add(new MaintenanceUpCommand("up"));
+
+$application->run();
