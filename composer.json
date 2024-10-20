@@ -1,20 +1,26 @@
 {
-    "name": "mh-shuvo/quick-php",
-    "description": "A streamlined PHP skeleton project that allows rapid development and deployment of applications, inspired by the efficiency and ease of use.",
+    "name": "atova/eshopper",
+    "description": "This is a E-Commerce website which is developed during the training period.",
+    "type": "project",
+    "license": "ATOVA@Mehedi",
     "autoload": {
         "psr-4": {
-            "MhShuvo\\QuickPhp\\": "src/",
-            "MhShuvo\\QuickPhp\\Core\\": "src/core",
-            "MhShuvo\\QuickPhp\\App\\": "src/app"
-        }
+            "Atova\\Eshoper\\": "_core/",
+            "App\\":"app/"
+        },
+        "files": [
+            "_core/Support/helper.php"
+        ]
     },
     "authors": [
         {
-            "name": "Md. Mehedi Hasan",
+            "name": "Mohammad Mehedi Hasan",
             "email": "mehedifci907@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
-        "symfony/console": "^6.4"
+        "vlucas/phpdotenv": "^5.6@dev",
+        "symfony/console": "6.4.x-dev"
     }
 }

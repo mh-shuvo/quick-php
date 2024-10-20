@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+require "./vendor/autoload.php";
+
+use Symfony\Component\Console\Application;
+use Atova\Eshoper\Foundation\Console\ServeCommand;
+use Atova\Eshoper\Foundation\Console\UpCommand;
+use Atova\Eshoper\Foundation\Console\DownCommand;
+use Atova\Eshoper\Foundation\Console\MigrateCommand;
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$application = new Application();
+$application->add(new ServeCommand("serve"));
+$application->add(new UpCommand("up"));
+$application->add(new DownCommand("down"));
+$application->add(new MigrateCommand("migrate"));
+
+$application->run();
+
+
