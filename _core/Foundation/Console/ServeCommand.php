@@ -16,7 +16,8 @@ class ServeCommand  extends Command{
     {
         try{
             $port = env("APP_PORT",8000);
-            $cmd = sprintf("php -S localhost:%d",$port);
+            $host = env("APP_HOST","localhost");
+            $cmd = sprintf("php -S %s:%d",$host,$port);
             $result = shell_exec($cmd);
 
         }catch(\Exception $exc){

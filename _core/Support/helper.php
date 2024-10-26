@@ -4,7 +4,7 @@ function env($key,$default){
     return isset($_ENV[$key]) ? $_ENV[$key] : $default;
 }
 
-function config($key,$default=null){
+function config($key,$default=null): mixed{
     $container = Atova\Eshoper\Abstract\Container::getInstance();
     $configValues = $container->get("config",[]);
 
@@ -38,8 +38,22 @@ function view($fileName,$data=[]){
     $absoluteFilePath = "views/".str_replace(".","/",$fileName).".php";
 
     if(!file_exists(base_path($absoluteFilePath))){
-       return displayException(sprintf("Views %s not found.",base_path($absoluteFilePath)));
+       return handleException(sprintf("Views %s not found.",base_path($absoluteFilePath)));
     }
 
     require_once base_path($absoluteFilePath);
+}
+
+function baseURL(){
+    $protocol = env("APP_PROTOCOL","http");
+    $port = env("APP_PORT",8000);
+    $host = env("APP_HOST","localhost");
+    $url_root = sprintf("%s://%s:%d",$protocol,$host,$port);
+    return $url_root;
+}
+
+
+function asset($path=null){
+    $absoluteFilePath = baseURL()."/public/".$path;
+    return $absoluteFilePath;
 }
