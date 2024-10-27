@@ -1,6 +1,6 @@
 <?php
 
-function env($key,$default){
+function env($key,$default=NULL){
     return isset($_ENV[$key]) ? $_ENV[$key] : $default;
 }
 
@@ -20,6 +20,12 @@ function config($key,$default=null): mixed{
 
     return $configValues;
 }
+
+function session(){
+    $container = Atova\Eshoper\Abstract\Container::getInstance();
+    return $container->get('session');
+}
+
 
 function base_path($path=null){
     $container = Atova\Eshoper\Abstract\Container::getInstance();
@@ -52,8 +58,18 @@ function baseURL(){
     return $url_root;
 }
 
+function url($path=null){
+    $absoluteFilePath = baseURL()."/".$path;
+    return $absoluteFilePath;
+}
+
 
 function asset($path=null){
     $absoluteFilePath = baseURL()."/public/".$path;
     return $absoluteFilePath;
+}
+
+function redirectTo($url=null){
+    $absoluteFilePath = baseURL()."/".$url;
+    header("Location:".$absoluteFilePath);
 }

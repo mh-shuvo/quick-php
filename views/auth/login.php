@@ -1,3 +1,6 @@
+<?php
+    $errors = session()->getFlash("login_validation_error");
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,10 +18,11 @@
 <body class="text-center">
 
 <main class="form-signin">
-    <form method="POST" action="">
+    <form method="POST" action="<?=url("login-attempt")?>">
         <img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
 
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <span class="text-danger"><?=session()->getFlash("error")?></span>
 
         <div class="form-floating">
             <span class="text-danger"><?php echo $errors['email_error'] ?? "" ?></span>

@@ -1,15 +1,19 @@
 <?php
 namespace Atova\Eshoper\Foundation;
-
-use Atova\Eshoper\Abstract\Database;
+use Atova\Eshoper\Abstract\ConsoleDatabase;
 class Migrations {
 
     private $db;
     private $migrationDir;
 
     public function __construct() {
+            $driver = $_ENV['DB_DRIVER'] ?? "mysql"; //isset($_ENV['DB_DRIVER']) ? $_ENV['DB_DRIVER'] : "mysql";
+            $host = $_ENV['DB_HOST'] ?? "localhost";
+            $user = $_ENV['DB_USER'] ?? "root";
+            $password = $_ENV['DB_PASSWORD'] ?? null;
+            $dbname = $_ENV['DB_NAME'] ?? "eshoper";
         // Initialize the DatabaseHandler instance
-        $this->db = new Database();
+        $this->db = new ConsoleDatabase($driver,$host,$user,$password,$dbname);
 
         // Set the directory where migration files are stored
         $this->migrationDir = __DIR__."/../../databases/migrations/";

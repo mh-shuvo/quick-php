@@ -6,18 +6,19 @@ abstract class Routing{
 
     public static function get($route, $resolve)
     {
-        if ($_SERVER['REQUEST_METHOD'] != "GET") {
-            return handleException(sprintf("Unsupported method: %s", $_SERVER['REQUEST_METHOD']),405);
+        if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            // return handleException(sprintf("Unsupported method: %s", $_SERVER['REQUEST_METHOD']),405);
+            self::process($route, $resolve);
         }
-        self::process($route, $resolve);
     }
 
     public static function post($route, $resolve)
     {
-        if ($_SERVER['REQUEST_METHOD'] != "POST") {
-            return handleException(sprintf("Unsupported method: %s", $_SERVER['REQUEST_METHOD']),405);
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            // return handleException(sprintf("Unsupported method: %s", $_SERVER['REQUEST_METHOD']),405);
+            self::process($route, $resolve);
         }
-        self::process($route, $resolve);
+        
     }
 
     public static function delete($route, $resolve)

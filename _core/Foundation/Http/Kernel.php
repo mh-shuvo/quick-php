@@ -6,6 +6,8 @@ use Atova\Eshoper\Foundation\Bootstrap\LoadConfiguration;
 use Atova\Eshoper\Foundation\Bootstrap\LoadEnvironment;
 use Atova\Eshoper\Foundation\Providers\RouteServiceProvider;
 use Atova\Eshoper\Contract\ServiceProviderContract;
+use Atova\Eshoper\Foundation\Bootstrap\LoadSession;
+
 class Kernel implements KernelContract{
 
     protected $app;
@@ -19,6 +21,7 @@ class Kernel implements KernelContract{
     ];
     
     protected $bootstrapClasses = [
+        LoadSession::class,
         LoadConfiguration::class,
     ];
 
