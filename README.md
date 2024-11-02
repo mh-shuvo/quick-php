@@ -13,11 +13,11 @@
     - Separate ConsoleDatabase handling for Command lines --done
 
 * Category
-    - Create `categories` table
-    - Build a category list page 
-    - Fetch all data from the backend using JS
-    - Category create functionalities
-    - Category edit functionalities
-    - Category delete functionalities
+    - Create `categories` table --done
+    - Build a category list page  -- done
+    - Fetch all data from the backend using JS --31st class
+    - Category create functionalities --assign akhilesh
+    - Category edit functionalities --31st class
+    - Category delete functionalities --31st class
 
 

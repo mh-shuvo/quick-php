@@ -73,3 +73,29 @@ function redirectTo($url=null){
     $absoluteFilePath = baseURL()."/".$url;
     header("Location:".$absoluteFilePath);
 }
+
+function getCurrentLoggedInAdmin($field="*"){
+    $key = config('app.ADMIN_LOGIN_AUTH_KEY');
+
+    if(!session()->has($key)){
+        return false;
+    }
+
+    $user = session()->get($key);
+
+    if($field != "*" && !is_null($field)){
+        return $user[$field] ?? false;
+    }
+
+    return $user;
+
+}
+
+function includeComponents($component,$staticFiles=[],$ext=".php"){
+    $component = str_replace(".","/", $component); // includes/admin/header
+    $absolutePath = base_path("views/".$component."".$ext); // F://laragon/www/training_projects/quickphp/views/includes/admin/header.php
+
+    if(file_exists($absolutePath)){
+        include_once $absolutePath;
+    }
+}

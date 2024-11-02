@@ -1,21 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Welcome to E-Shoper Dashboard
-    <button id="LogoutButton">Logout</button>
-    <form action="<?=url('logout')?>" method="post" id="LogoutForm"></form>
-
-    <script>
-        const btn =document.querySelector("#LogoutButton")
-        btn.addEventListener("click",()=>{
-            const form =document.querySelector("#LogoutForm")
-            form.submit();
-        })
-    </script>
-</body>
-</html>
+<?php
+includeComponents("includes.admin.header");
+includeComponents("includes.admin.sidebar");
+?>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+        <div class="row">
+            <div class="col-12">
+                Hello
+            </div>
+        </div>
+    </div>
+</main>
+<?php
+includeComponents("includes.admin.footer");
+?>
