@@ -25,3 +25,6 @@ Route::post("/logout",[AdminController::class,"logout"]);
 /**Category */
 Route::get("/category",[CategoryController::class,"index"]);
 Route::get("/category/create",[CategoryController::class,"create"]);
+Route::post("/category/store",[CategoryController::class,"store"]);
+Route::get("/category/edit/(\w+)",[CategoryController::class,"edit"]);
+Route::get("/category/delete/(\w+)",[CategoryController::class,"destroy"]);

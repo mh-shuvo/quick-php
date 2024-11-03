@@ -99,3 +99,28 @@ function includeComponents($component,$staticFiles=[],$ext=".php"){
         include_once $absolutePath;
     }
 }
+
+function getUploadDirectory($dir=null){
+    $absolutePath = UPLOAD_DIR."/".$dir;
+    $path = base_path(path: $absolutePath);
+    return $path ;
+}
+
+function getFilePath(string $filePath){
+    $uploadDir = getUploadDirectory($filePath);
+    return $uploadDir;
+}
+
+function getFileUrl(string $file){
+    if(str_starts_with($file,"http")){
+        return $file;
+    }
+    return baseURL().'/'.UPLOAD_DIR."/".$file;
+}
+
+
+function debugCode($data=null){
+    echo "<pre>";
+    print_r($data);
+    exit;
+}

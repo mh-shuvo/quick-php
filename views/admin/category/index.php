@@ -17,6 +17,11 @@ includeComponents("includes.admin.sidebar");
             <li class="breadcrumb-item active">Category List</li>
         </ol>
         <div class="row">
+            <div class="col-sm-12">
+                <span class="text-success fw-bold"><?=session()->getFlash('success')?></span>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12">
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -24,6 +29,7 @@ includeComponents("includes.admin.sidebar");
                         <th>Image</th>
                         <th>Name</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </thead>
                     <tbody>
                         <?php
@@ -32,7 +38,7 @@ includeComponents("includes.admin.sidebar");
                             <tr>
                                 <td><?=$key+1?></td>
                                 <td>
-                                    <img src="<?=$category->image?>" alt="">
+                                    <img src="<?=  getFileUrl($category->image)?>" alt="" style="height:100px;width:100px;">
                                 </td>
                                 <td>
                                     <?=$category->category_name?>
@@ -41,6 +47,15 @@ includeComponents("includes.admin.sidebar");
                                 <td>
                                     
                                     <span class="badge <?php echo $category->status == "ACTIVE" ?"text-bg-success":"text-bg-danger"; ?>"><?=$category->status?></span>
+                                </td>
+                                <td>
+                                    <a href="<?=url("category/edit/".$category->id)?>" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a href="<?=url("category/delete/".$category->id)?>" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+
                                 </td>
                             </tr>
                         <?php 
