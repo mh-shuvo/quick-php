@@ -1,11 +1,5 @@
-/*!
-    * Start Bootstrap - SB Admin v7.0.7 (https://startbootstrap.com/template/sb-admin)
-    * Copyright 2013-2023 Start Bootstrap
-    * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
-    */
-    // 
-// Scripts
-// 
+const BASEPATH = document.querySelector("meta[name='BASEPATH']").getAttribute("content");
+const STORAGE_BASE = document.querySelector("meta[name='STORAGE_BASE']").getAttribute("content");
 
 window.addEventListener('DOMContentLoaded', event => {
 
@@ -24,3 +18,9 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+const btn =document.querySelector("#LogoutButton")
+    btn.addEventListener("click",()=>{
+    const form =document.querySelector("#LogoutForm")
+    form.submit();
+})

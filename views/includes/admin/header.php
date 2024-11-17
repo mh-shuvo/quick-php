@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="BASEPATH" content="<?=url()?>">
+        <meta name="STORAGE_BASE" content="<?=getFileUrl()?>">
         <title>Dashboard - <?=config('app.name',"QuickPHP")?></title>
         <link href="<?=asset('admin/css/styles.css')?>" rel="stylesheet" />
         <?php

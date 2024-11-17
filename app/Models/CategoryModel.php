@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 use Atova\Eshoper\Foundation\Models\Model;
+use PDO;
 
 class CategoryModel extends Model{
     protected $table = "categories";
@@ -15,6 +16,33 @@ class CategoryModel extends Model{
         
         return $this->results();
 
+    }
+
+    public function getPaginatedCategories($offset, $limit){
+        $query = "SELECT * FROM {$this->table} ORDER BY `id` DESC LIMIT :limit OFFSET :offset";
+        $this->query( $query );
+        $this->bind("limit", $limit, PDO::PARAM_INT );
+        $this->bind("offset", $offset, PDO::PARAM_INT );
+        
+        if($this->getErrors()){
+            return $this->getErrors();
+        }
+        return $this->results();
+    }
+
+    public function getTotalCategoriesCount()
+    {
+        $sql = "SELECT COUNT(*) as count FROM {$this->table}";
+        $this->query($sql);
+
+        if ($this->getErrors()) {
+            return "Something went wrong. The Error is: " . $this->getErrors();
+        }
+
+        // Fetching a single result as an object with the 'results' method (not an array)
+        $result = $this->results(false);
+
+        return $result ? (int) $result->count : 0; // Return total count as integer
     }
 
     public function store( $data ){
@@ -32,5 +60,6 @@ class CategoryModel extends Model{
         }
         return true;
     }
+    
 
 }

@@ -10,15 +10,7 @@ class CategoryController{
         $data['scripts'] =[
             asset('admin/js/category.js'),
         ];
-        $model = new CategoryModel();
-        $categories = $model->getAllCategories();
-
-        if(!is_array($categories)){
-            handleException($categories);
-        }
-
-        $data['categories'] = $categories;
-
+        
         return view("admin.category.index",$data);
     }
     public function create(){
@@ -101,5 +93,36 @@ class CategoryController{
     public function destroy($id){ 
         session()->flash('success','Category successfully deleted. ID is: '.$id);
         return redirectTo('category');
+    }
+
+
+    public function fetchCategories(){
+
+        $limit = isset($_GET['limit']) ? $_GET['limit'] :10;
+        $page  = isset($_GET['page']) ? $_GET['page'] :1;
+        $offset = ($page -1) * $limit;
+        $model = new CategoryModel();
+        $categories = $model->getPaginatedCategories($offset, $limit);
+        $totalCategories = $model->getTotalCategoriesCount();
+        
+        if(is_string($categories)){
+            http_response_code(500);
+            echo json_encode([
+                'status' => 'failed',
+                'message'=> 'Something went wrong during fetching data.',
+                'error' => $categories
+            ]);
+        }
+        http_response_code(200);
+        echo json_encode([
+            "status" => "success",
+            "data" => $categories,
+            "pagination" => [
+                "total" => $totalCategories,
+                "current_page" => $page,
+                "per_page" => $limit,
+                "total_pages" => ceil($totalCategories / $limit)
+            ]
+        ]);
     }
 }

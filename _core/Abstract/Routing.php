@@ -52,7 +52,7 @@ abstract class Routing{
 
     private static function getUrl()
     {
-        return $_SERVER['REQUEST_URI'];
+        return $_SERVER['PATH_INFO'];
     }
 
     private static function getMatches($pattern): array|bool

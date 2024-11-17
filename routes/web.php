@@ -28,3 +28,4 @@ Route::get("/category/create",[CategoryController::class,"create"]);
 Route::post("/category/store",[CategoryController::class,"store"]);
 Route::get("/category/edit/(\w+)",[CategoryController::class,"edit"]);
 Route::get("/category/delete/(\w+)",[CategoryController::class,"destroy"]);
+Route::get("/fetch-categories",[CategoryController::class,"fetchCategories"]);

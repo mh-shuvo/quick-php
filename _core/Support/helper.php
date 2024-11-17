@@ -111,8 +111,8 @@ function getFilePath(string $filePath){
     return $uploadDir;
 }
 
-function getFileUrl(string $file){
-    if(str_starts_with($file,"http")){
+function getFileUrl(string $file=null){
+    if($file !=null && str_starts_with($file,"http")){
         return $file;
     }
     return baseURL().'/'.UPLOAD_DIR."/".$file;

@@ -32,37 +32,9 @@ includeComponents("includes.admin.sidebar");
                         <th>Action</th>
                     </thead>
                     <tbody>
-                        <?php
-                            foreach($data['categories'] as $key=>$category){
-                        ?>
-                            <tr>
-                                <td><?=$key+1?></td>
-                                <td>
-                                    <img src="<?=  getFileUrl($category->image)?>" alt="" style="height:100px;width:100px;">
-                                </td>
-                                <td>
-                                    <?=$category->category_name?>
-                                    <span class="badge text-bg-info <?php echo !$category->is_featured ?"d-none":""; ?>">Featured</span>
-                                </td>
-                                <td>
-                                    
-                                    <span class="badge <?php echo $category->status == "ACTIVE" ?"text-bg-success":"text-bg-danger"; ?>"><?=$category->status?></span>
-                                </td>
-                                <td>
-                                    <a href="<?=url("category/edit/".$category->id)?>" class="btn btn-primary btn-sm">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <a href="<?=url("category/delete/".$category->id)?>" class="btn btn-danger btn-sm">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-
-                                </td>
-                            </tr>
-                        <?php 
-                            }
-                        ?>
                     </tbody>
                 </table>
+                <div id="pagination"></div>
             </div>
         </div>
     </div>
