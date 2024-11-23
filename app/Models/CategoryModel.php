@@ -60,6 +60,35 @@ class CategoryModel extends Model{
         }
         return true;
     }
+    public function update($data){
+        $sql = "UPDATE `{$this->table}` SET `category_name`=:name,`image`=:image,`status`=:status,`is_featured`=:is_featured WHERE `id`=:id";
+        $this->query($sql);
+        $this->bind("id",$data['id'],PDO::PARAM_STR);
+        $this->bind("name",$data['category_name'],PDO::PARAM_STR);
+        $this->bind("image",$data['image'],PDO::PARAM_STR);
+        $this->bind("status",$data['status'],PDO::PARAM_STR);
+        $this->bind("is_featured",$data['is_featured'],PDO::PARAM_STR);
+        $this->execute();
+        if($this->getErrors()){
+            return ''. $this->getErrors();
+        }
+        return true;
+    }
+
+    public function getCategoryById($id,$filelds="*"){
+        $sql = "SELECT {$filelds} FROM {$this->table} WHERE `id`=:id;";
+        $this->query($sql);
+        $this->bind("id",$id);
+
+        if ($this->getErrors()) {
+            return "Something went wrong. The Error is: " . $this->getErrors();
+        }
+
+        // Fetching a single result as an object with the 'results' method (not an array)
+        $result = $this->results(false);
+
+        return $result ?? false;
+    }
     
 
 }

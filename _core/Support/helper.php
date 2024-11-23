@@ -118,6 +118,16 @@ function getFileUrl(string $file=null){
     return baseURL().'/'.UPLOAD_DIR."/".$file;
 }
 
+function deleteFile(string $file= null){
+
+    if($file !=null && str_starts_with($file,"http")){
+        return true;
+    }
+
+    unlink(getFilePath($file));
+}
+
+
 
 function debugCode($data=null){
     echo "<pre>";
