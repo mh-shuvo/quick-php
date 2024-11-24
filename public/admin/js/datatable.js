@@ -36,7 +36,8 @@ function fetchListData(options={
     "limit":10,
     "page":1,
     "pagination_target_element":document.querySelector("#pagination"),
-    "render_method":"render"
+    "render_method":"render",
+    "render_table": document.querySelector("table")
 }){
     // console.log(options)
 
@@ -48,12 +49,27 @@ function fetchListData(options={
         if (req.readyState === XMLHttpRequest.DONE) {
             if(req.status === 200){
                 const response = JSON.parse(req.responseText);
-                options.render_method(response.data,options.limit,options.page)
+                if((response.data).length <=0 ){
+                    renderNotDataFoundRow(options)
+                }else{
+                    options.render_method(response.data,options.limit,options.page)
+                }
+                
                 renderPagination(response.pagination,options)
             }
         }
     }
     req.send();
+}
+
+function renderNotDataFoundRow(options){
+    const table = options.render_table
+    const tr = document.createElement('tr')
+    const totalColumn = (table.querySelectorAll("thead th")).length || 0;
+    tr.innerHTML = `
+        <td colspan=${totalColumn} style="text-align:center; padding-top: 5px; padding-bottom:5px; font-weight:bold;color:red">No Data Found</td>
+    `
+    table.appendChild(tr)
 }
 
 

@@ -55,7 +55,7 @@ $category = $data['category'] ?? [];
                         <span class="text-danger"><?=$validationErrors['status_error'] ?? null?></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Add Category</button>
+                    <button type="submit" class="btn btn-primary">Edit Category</button>
                 </form>
             </div>
         </div>
